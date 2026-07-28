@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#173b35" />
+    <title>OAR — 고요를 설계합니다</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+      :root { --ink:#173b35; --paper:#f4f0e8; --clay:#c86849; --mist:#dce5d9; --line:rgba(23,59,53,.2); }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body { margin:0; color:var(--ink); background:var(--paper); font-family:"DM Sans",sans-serif; }
+      a { color:inherit; text-decoration:none; }
+      .nav { height:84px; display:flex; align-items:center; justify-content:space-between; padding:0 5.8vw; border-bottom:1px solid var(--line); }
+      .logo { font-size:24px; font-weight:700; letter-spacing:-.11em; }
+      .logo span { color:var(--clay); }
+      .nav-links { display:flex; gap:29px; font-size:13px; font-weight:500; }
+      .nav-links a { transition:opacity .2s; } .nav-links a:hover { opacity:.55; }
+      .menu { display:none; border:0; background:none; font:inherit; color:inherit; }
+      .hero { min-height:680px; padding:72px 5.8vw 46px; display:grid; grid-template-columns:1.02fr .98fr; gap:50px; position:relative; overflow:hidden; }
+      .eyebrow, .section-tag { font-family:"DM Mono",monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; }
+      .eyebrow::before, .section-tag::before { content:""; display:inline-block; width:20px; border-top:1px solid currentColor; margin:0 9px 3px 0; }
+      h1 { font-family:"Nanum Myeongjo",serif; font-size:clamp(57px,7.2vw,112px); font-weight:400; line-height:1.08; letter-spacing:-.075em; margin:58px 0 30px; max-width:710px; }
+      h1 em { color:var(--clay); font-style:normal; }
+      .hero-copy { font-size:17px; line-height:1.7; max-width:420px; margin:0 0 36px; color:rgba(23,59,53,.82); }
+      .btn { display:inline-flex; align-items:center; gap:35px; padding:15px 19px; background:var(--ink); color:var(--paper); font-size:13px; transition:transform .2s, background .2s; }
+      .btn:hover { background:var(--clay); transform:translateY(-2px); }
+      .arrow { font-size:19px; line-height:10px; }
+      .hero-art { align-self:end; height:540px; position:relative; background:var(--mist); overflow:hidden; }
+      .sun { width:285px; aspect-ratio:1; border-radius:50%; background:#f1bc77; position:absolute; top:58px; left:50%; transform:translateX(-50%); }
+      .hill { position:absolute; width:170%; aspect-ratio:1.45; background:var(--ink); border-radius:50% 50% 0 0; bottom:-45%; left:-35%; }
+      .hill::after { content:""; position:absolute; width:58%; aspect-ratio:1; background:#31574d; border-radius:50%; right:-3%; top:-20%; }
+      .stem { height:230px; width:3px; background:var(--clay); position:absolute; right:22%; bottom:0; transform:rotate(15deg); transform-origin:bottom; }
+      .leaf { position:absolute; width:80px; height:39px; background:var(--clay); border-radius:100% 0 100% 0; right:16%; bottom:145px; transform:rotate(-4deg); }
+      .leaf.two { right:28%; bottom:210px; transform:scaleX(-1) rotate(-8deg); background:#df8c5d; }
+      .hero-note { position:absolute; font:11px "DM Mono",monospace; writing-mode:vertical-rl; right:12px; bottom:17px; letter-spacing:.12em; }
+      .ticker { padding:20px 5.8vw; background:var(--ink); color:var(--paper); display:flex; justify-content:space-between; align-items:center; overflow:hidden; }
+      .ticker span { font-family:"Nanum Myeongjo",serif; font-size:21px; white-space:nowrap; } .ticker b { color:#f1bc77; padding:0 26px; }
+      .manifesto { padding:150px 5.8vw; display:grid; grid-template-columns:1fr 2fr; gap:10vw; }
+      .manifesto h2 { font-family:"Nanum Myeongjo",serif; font-size:clamp(34px,4.4vw,66px); font-weight:400; line-height:1.35; letter-spacing:-.06em; margin:0; }
+      .manifesto h2 strong { color:var(--clay); font-weight:400; }
+      .manifesto p { margin:128px 0 0; max-width:480px; font-size:17px; line-height:1.8; }
+      .values { padding:0 5.8vw 145px; } .values-header { display:flex; justify-content:space-between; align-items:end; padding-bottom:22px; border-bottom:1px solid var(--ink); }
+      h3 { font-family:"Nanum Myeongjo",serif; font-size:36px; font-weight:400; letter-spacing:-.05em; margin:0; }
+      .value-grid { display:grid; grid-template-columns:repeat(3,1fr); }
+      .value { min-height:270px; padding:29px 25px; border-right:1px solid var(--line); } .value:first-child { padding-left:0; } .value:last-child { border:0; }
+      .value-no { font:11px "DM Mono",monospace; color:var(--clay); } .value h4 { font-family:"Nanum Myeongjo",serif; font-size:29px; font-weight:400; margin:72px 0 12px; }
+      .value p { font-size:14px; line-height:1.65; max-width:250px; margin:0; }
+      .closing { background:var(--clay); color:#fff9ef; min-height:455px; padding:80px 5.8vw 44px; display:flex; flex-direction:column; justify-content:space-between; }
+      .closing h2 { font-family:"Nanum Myeongjo",serif; font-size:clamp(47px,6.2vw,93px); font-weight:400; letter-spacing:-.075em; line-height:1.12; margin:0; max-width:850px; }
+      .closing h2 i { font-style:normal; color:#173b35; } .closing-bottom { display:flex; justify-content:space-between; align-items:end; font-size:13px; }
+      .footer-link { border-bottom:1px solid currentColor; padding-bottom:5px; }
+      @media(max-width:720px) { .nav { height:68px; padding:0 24px; } .nav-links { display:none; } .menu{display:block;font-size:13px}.hero{padding:45px 24px 0;grid-template-columns:1fr;gap:42px;min-height:0}h1{font-size:55px;margin:39px 0 24px}.hero-copy{font-size:15px}.hero-art{height:370px;margin:0 -24px}.ticker{padding:16px 24px}.ticker span{font-size:17px}.manifesto{padding:90px 24px;grid-template-columns:1fr;gap:25px}.manifesto p{margin:0;font-size:15px}.values{padding:0 24px 80px}.values-header{align-items:start;gap:25px}.values-header h3{font-size:28px}.value-grid{grid-template-columns:1fr}.value{min-height:auto;padding:28px 0;border-right:0;border-bottom:1px solid var(--line)}.value h4{margin:37px 0 10px}.closing{min-height:400px;padding:55px 24px 28px}.closing-bottom{gap:20px;align-items:start;flex-direction:column}.sun{width:210px}.hill{bottom:-35%} }
+    </style>
+  </head>
+  <body>
+    <header class="nav"><a class="logo" href="#top">O<span>·</span>AR</a><nav class="nav-links"><a href="#story">우리의 이야기</a><a href="#values">가치</a><a href="#contact">문의하기</a></nav><button class="menu" aria-label="메뉴 열기">MENU</button></header>
+    <main id="top">
+      <section class="hero"><div><div class="eyebrow">A slower kind of living</div><h1>일상에<br /><em>고요를</em> 설계합니다.</h1><p class="hero-copy">OAR는 바쁜 일상 속에도 나만의 리듬을 찾을 수 있도록, 오래 곁에 둘 물건과 경험을 만듭니다.</p><a class="btn" href="#story">OAR 이야기 보기 <span class="arrow">↗</span></a></div><div class="hero-art" aria-label="일몰과 식물을 표현한 추상 일러스트"><div class="sun"></div><div class="hill"></div><div class="stem"></div><div class="leaf"></div><div class="leaf two"></div><span class="hero-note">OAR / 01</span></div></section>
+      <div class="ticker"><span>LESS, BUT <b>BETTER.</b> LESS, BUT <b>BETTER.</b></span><span aria-hidden="true">✦</span></div>
+      <section class="manifesto" id="story"><div class="section-tag">Our point of view</div><div><h2>좋은 삶은 더 많은 것이 아니라,<br /><strong>더 나다운 것</strong>에서 시작된다고 믿습니다.</h2><p>우리는 빠르게 소비되는 유행보다 시간이 지나도 자연스럽게 남는 선택을 고민합니다. 손끝에 닿는 질감, 공간에 머무는 빛, 하루를 바꾸는 작은 습관까지. OAR는 삶의 여백을 함께 발견하는 브랜드입니다.</p></div></section>
+      <section class="values" id="values"><div class="values-header"><div class="section-tag">What we believe</div><h3>우리의 세 가지 기준</h3></div><div class="value-grid"><article class="value"><span class="value-no">01</span><h4>진솔함</h4><p>무엇을 만들고 왜 만드는지, 언제나 투명하고 정직하게 이야기합니다.</p></article><article class="value"><span class="value-no">02</span><h4>감각</h4><p>눈에 보이는 아름다움과 손에 남는 경험, 그 사이의 균형을 찾습니다.</p></article><article class="value"><span class="value-no">03</span><h4>지속성</h4><p>오늘의 편리함보다 내일에도 기분 좋게 사용할 수 있는 방식을 택합니다.</p></article></div></section>
+      <section class="closing" id="contact"><h2>당신의 하루에<br /><i>머무를 장면</i>을 만듭니다.</h2><div class="closing-bottom"><span>SEOUL · KOREA<br />© OAR 2026</span><a class="footer-link" href="mailto:hello@oar.kr">hello@oar.kr ↗</a></div></section>
+    </main>
+  </body>
+</html>
