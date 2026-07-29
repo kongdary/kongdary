@@ -3,69 +3,71 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#173b35" />
+    <meta name="theme-color" content="#fff8ec" />
+    <meta name="description" content="?쇨낵 媛?? 援먰쉶?먯꽌 ?뺤꽦???섎늻??肄⑸떎由ъ쓽 ?곕쑜???앺솢 湲곕줉" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="favicon.svg" />
-    <title>OAR — 고요를 설계합니다</title>
+    <title>肄⑸떎由????ㅻ뒛???④퍡, ?ㅼ젙?섍쾶</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <style>
-      :root { --ink:#173b35; --paper:#f4f0e8; --clay:#c86849; --mist:#dce5d9; --line:rgba(23,59,53,.2); }
-      * { box-sizing:border-box; }
-      html { scroll-behavior:smooth; }
-      body { margin:0; color:var(--ink); background:var(--paper); font-family:"DM Sans",sans-serif; }
+      :root { --cream:#fff8ec; --ink:#28261f; --yellow:#f5c52d; --green:#577b59; --sage:#dfe8d8; --coral:#d96e4e; --line:rgba(40,38,31,.15); }
+      * { box-sizing:border-box; } html { scroll-behavior:smooth; }
+      body { margin:0; color:var(--ink); background:var(--cream); font-family:Pretendard,Arial,sans-serif; word-break:keep-all; }
       a { color:inherit; text-decoration:none; }
-      .nav { height:84px; display:flex; align-items:center; justify-content:space-between; padding:0 5.8vw; border-bottom:1px solid var(--line); }
-      .logo { font-size:24px; font-weight:700; letter-spacing:-.11em; }
-      .logo span { color:var(--clay); }
-      .nav-links { display:flex; gap:29px; font-size:13px; font-weight:500; }
-      .nav-links a { transition:opacity .2s; } .nav-links a:hover { opacity:.55; }
-      .menu { display:none; border:0; background:none; font:inherit; color:inherit; }
-      .hero { min-height:680px; padding:72px 5.8vw 46px; display:grid; grid-template-columns:1.02fr .98fr; gap:50px; position:relative; overflow:hidden; }
-      .eyebrow, .section-tag { font-family:"DM Mono",monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; }
-      .eyebrow::before, .section-tag::before { content:""; display:inline-block; width:20px; border-top:1px solid currentColor; margin:0 9px 3px 0; }
-      h1 { font-family:"Nanum Myeongjo",serif; font-size:clamp(57px,7.2vw,112px); font-weight:400; line-height:1.08; letter-spacing:-.075em; margin:58px 0 30px; max-width:710px; }
-      h1 em { color:var(--clay); font-style:normal; }
-      .hero-copy { font-size:17px; line-height:1.7; max-width:420px; margin:0 0 36px; color:rgba(23,59,53,.82); }
-      .btn { display:inline-flex; align-items:center; gap:35px; padding:15px 19px; background:var(--ink); color:var(--paper); font-size:13px; transition:transform .2s, background .2s; }
-      .btn:hover { background:var(--clay); transform:translateY(-2px); }
-      .arrow { font-size:19px; line-height:10px; }
-      .hero-art { align-self:end; height:540px; position:relative; background:var(--mist); overflow:hidden; }
-      .sun { width:285px; aspect-ratio:1; border-radius:50%; background:#f1bc77; position:absolute; top:58px; left:50%; transform:translateX(-50%); }
-      .hill { position:absolute; width:170%; aspect-ratio:1.45; background:var(--ink); border-radius:50% 50% 0 0; bottom:-45%; left:-35%; }
-      .hill::after { content:""; position:absolute; width:58%; aspect-ratio:1; background:#31574d; border-radius:50%; right:-3%; top:-20%; }
-      .stem { height:230px; width:3px; background:var(--clay); position:absolute; right:22%; bottom:0; transform:rotate(15deg); transform-origin:bottom; }
-      .leaf { position:absolute; width:80px; height:39px; background:var(--clay); border-radius:100% 0 100% 0; right:16%; bottom:145px; transform:rotate(-4deg); }
-      .leaf.two { right:28%; bottom:210px; transform:scaleX(-1) rotate(-8deg); background:#df8c5d; }
-      .hero-note { position:absolute; font:11px "DM Mono",monospace; writing-mode:vertical-rl; right:12px; bottom:17px; letter-spacing:.12em; }
-      .ticker { padding:20px 5.8vw; background:var(--ink); color:var(--paper); display:flex; justify-content:space-between; align-items:center; overflow:hidden; }
-      .ticker span { font-family:"Nanum Myeongjo",serif; font-size:21px; white-space:nowrap; } .ticker b { color:#f1bc77; padding:0 26px; }
-      .manifesto { padding:150px 5.8vw; display:grid; grid-template-columns:1fr 2fr; gap:10vw; }
-      .manifesto h2 { font-family:"Nanum Myeongjo",serif; font-size:clamp(34px,4.4vw,66px); font-weight:400; line-height:1.35; letter-spacing:-.06em; margin:0; }
-      .manifesto h2 strong { color:var(--clay); font-weight:400; }
-      .manifesto p { margin:128px 0 0; max-width:480px; font-size:17px; line-height:1.8; }
-      .values { padding:0 5.8vw 145px; } .values-header { display:flex; justify-content:space-between; align-items:end; padding-bottom:22px; border-bottom:1px solid var(--ink); }
-      h3 { font-family:"Nanum Myeongjo",serif; font-size:36px; font-weight:400; letter-spacing:-.05em; margin:0; }
-      .value-grid { display:grid; grid-template-columns:repeat(3,1fr); }
-      .value { min-height:270px; padding:29px 25px; border-right:1px solid var(--line); } .value:first-child { padding-left:0; } .value:last-child { border:0; }
-      .value-no { font:11px "DM Mono",monospace; color:var(--clay); } .value h4 { font-family:"Nanum Myeongjo",serif; font-size:29px; font-weight:400; margin:72px 0 12px; }
-      .value p { font-size:14px; line-height:1.65; max-width:250px; margin:0; }
-      .closing { background:var(--clay); color:#fff9ef; min-height:455px; padding:80px 5.8vw 44px; display:flex; flex-direction:column; justify-content:space-between; }
-      .closing h2 { font-family:"Nanum Myeongjo",serif; font-size:clamp(47px,6.2vw,93px); font-weight:400; letter-spacing:-.075em; line-height:1.12; margin:0; max-width:850px; }
-      .closing h2 i { font-style:normal; color:#173b35; } .closing-bottom { display:flex; justify-content:space-between; align-items:end; font-size:13px; }
-      .footer-link { border-bottom:1px solid currentColor; padding-bottom:5px; }
-      @media(max-width:720px) { .nav { height:68px; padding:0 24px; } .nav-links { display:none; } .menu{display:block;font-size:13px}.hero{padding:45px 24px 0;grid-template-columns:1fr;gap:42px;min-height:0}h1{font-size:55px;margin:39px 0 24px}.hero-copy{font-size:15px}.hero-art{height:370px;margin:0 -24px}.ticker{padding:16px 24px}.ticker span{font-size:17px}.manifesto{padding:90px 24px;grid-template-columns:1fr;gap:25px}.manifesto p{margin:0;font-size:15px}.values{padding:0 24px 80px}.values-header{align-items:start;gap:25px}.values-header h3{font-size:28px}.value-grid{grid-template-columns:1fr}.value{min-height:auto;padding:28px 0;border-right:0;border-bottom:1px solid var(--line)}.value h4{margin:37px 0 10px}.closing{min-height:400px;padding:55px 24px 28px}.closing-bottom{gap:20px;align-items:start;flex-direction:column}.sun{width:210px}.hill{bottom:-35%} }
+      .wrap { width:min(1160px,calc(100% - 48px)); margin:auto; }
+      .nav { min-height:78px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); }
+      .brand { display:flex; align-items:center; gap:10px; font-family:"Gowun Batang",serif; font-size:25px; font-weight:700; letter-spacing:-.08em; }
+      .brand-mark { width:29px; height:29px; display:grid; place-items:center; border-radius:50%; background:var(--yellow); font:700 16px/1 Arial; }
+      .nav nav { display:flex; gap:26px; font-size:14px; color:rgba(40,38,31,.7); }
+      .nav nav a:hover { color:var(--green); }
+      .hero { display:grid; grid-template-columns:1.05fr .95fr; gap:64px; min-height:600px; align-items:center; padding:72px 0 68px; }
+      .tag { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:99px; background:var(--sage); font-size:13px; font-weight:600; color:#436747; }
+      h1,h2,h3 { font-family:"Gowun Batang",serif; font-weight:700; letter-spacing:-.07em; }
+      h1 { margin:24px 0 22px; font-size:clamp(48px,6vw,78px); line-height:1.23; }
+      h1 em { color:var(--coral); font-style:normal; }
+      .hero p { max-width:480px; margin:0; font-size:17px; line-height:1.85; color:rgba(40,38,31,.74); }
+      .button { display:inline-flex; align-items:center; gap:10px; margin-top:32px; padding:14px 18px; border-radius:4px; background:var(--ink); color:#fff; font-size:14px; font-weight:600; transition:transform .2s,background .2s; }
+      .button:hover { transform:translateY(-2px); background:var(--green); }
+      .illustration { position:relative; min-height:410px; border-radius:190px 190px 28px 28px; background:var(--sage); overflow:hidden; }
+      .sun { position:absolute; width:155px; height:155px; border-radius:50%; background:var(--yellow); top:51px; right:19%; }
+      .table { position:absolute; width:125%; height:180px; left:-12%; bottom:-77px; border-radius:50%; background:#b66b4c; }
+      .plate { position:absolute; width:150px; height:50px; bottom:77px; left:21%; border-radius:50%; background:#fff9ee; box-shadow:0 9px 0 #e9cfad; }
+      .bowl { position:absolute; width:92px; height:45px; bottom:108px; left:29%; border-radius:8px 8px 45px 45px; background:var(--green); }
+      .plant { position:absolute; right:17%; bottom:91px; width:6px; height:156px; background:#48664a; transform:rotate(-18deg); transform-origin:bottom; }
+      .leaf { position:absolute; width:64px; height:33px; border-radius:100% 0 100% 0; background:#71936a; }
+      .leaf.one { right:12%; bottom:198px; transform:rotate(13deg); } .leaf.two { right:27%; bottom:151px; transform:scaleX(-1) rotate(22deg); }
+      .note { position:absolute; left:30px; bottom:26px; font-size:12px; font-weight:600; color:rgba(255,255,255,.85); letter-spacing:.04em; }
+      .quote { padding:28px 0; background:var(--green); color:#fffaf0; text-align:center; font-family:"Gowun Batang",serif; font-size:clamp(19px,2.3vw,28px); letter-spacing:-.05em; }
+      section { scroll-margin-top:20px; } .story { display:grid; grid-template-columns:.75fr 1.25fr; gap:9vw; padding:130px 0; }
+      .eyebrow { font-size:12px; font-weight:700; letter-spacing:.12em; color:var(--coral); text-transform:uppercase; }
+      h2 { margin:20px 0 0; font-size:clamp(36px,4.5vw,60px); line-height:1.35; }
+      .story-copy { padding-top:65px; font-size:17px; line-height:1.9; color:rgba(40,38,31,.76); }
+      .pillars { padding:0 0 130px; } .section-head { display:flex; justify-content:space-between; align-items:end; gap:30px; padding-bottom:23px; border-bottom:1px solid var(--ink); }
+      .section-head h2 { margin:10px 0 0; font-size:36px; }.section-head p { margin:0; max-width:290px; font-size:14px; line-height:1.6; color:rgba(40,38,31,.7); }
+      .grid { display:grid; grid-template-columns:repeat(4,1fr); } .card { min-height:260px; padding:27px 22px; border-right:1px solid var(--line); } .card:first-child{padding-left:0}.card:last-child{border:0}
+      .card .num { font-size:12px; font-weight:700; color:var(--coral); }.card h3 { margin:62px 0 13px; font-size:28px; }.card p { margin:0; font-size:14px; line-height:1.7; color:rgba(40,38,31,.74); }
+      .threads { margin-bottom:90px; padding:53px 6vw; border-radius:16px; background:var(--yellow); display:flex; align-items:center; justify-content:space-between; gap:35px; }.threads h2 { margin:0; font-size:clamp(30px,3.4vw,45px); line-height:1.34; }.threads p { margin:12px 0 0; font-size:15px; line-height:1.7; }.threads .button { flex:0 0 auto; margin:0; background:var(--ink); }
+      footer { padding:28px 0 34px; border-top:1px solid var(--line); display:flex; justify-content:space-between; font-size:13px; color:rgba(40,38,31,.65); }
+      @media (max-width:780px) { .wrap { width:min(100% - 40px,1160px); }.nav{min-height:66px}.nav nav{display:none}.hero{grid-template-columns:1fr;gap:41px;padding:51px 0 0;min-height:0}.hero p{font-size:15px}.illustration{min-height:330px;border-radius:150px 150px 0 0;margin:0 -20px}.story{grid-template-columns:1fr;gap:26px;padding:88px 0}.story-copy{padding:0;font-size:15px}.pillars{padding-bottom:85px}.section-head{display:block}.section-head p{margin-top:16px}.grid{grid-template-columns:1fr 1fr}.card{min-height:210px;padding:23px 14px;border-bottom:1px solid var(--line)}.card:nth-child(odd){padding-left:0}.card:nth-child(even){border-right:0}.card h3{margin:38px 0 10px;font-size:25px}.threads{margin:0 -20px 64px;border-radius:0;display:block;padding:45px 20px}.threads .button{margin-top:25px}footer{display:block;line-height:1.8}.sun{width:125px;height:125px}.plant{right:22%;}.note{left:25px} }
     </style>
   </head>
   <body>
-    <header class="nav"><a class="logo" href="#top">O<span>·</span>AR</a><nav class="nav-links"><a href="#story">우리의 이야기</a><a href="#values">가치</a><a href="#contact">문의하기</a></nav><button class="menu" aria-label="메뉴 열기">MENU</button></header>
-    <main id="top">
-      <section class="hero"><div><div class="eyebrow">A slower kind of living</div><h1>일상에<br /><em>고요를</em> 설계합니다.</h1><p class="hero-copy">OAR는 바쁜 일상 속에도 나만의 리듬을 찾을 수 있도록, 오래 곁에 둘 물건과 경험을 만듭니다.</p><a class="btn" href="#story">OAR 이야기 보기 <span class="arrow">↗</span></a></div><div class="hero-art" aria-label="일몰과 식물을 표현한 추상 일러스트"><div class="sun"></div><div class="hill"></div><div class="stem"></div><div class="leaf"></div><div class="leaf two"></div><span class="hero-note">OAR / 01</span></div></section>
-      <div class="ticker"><span>LESS, BUT <b>BETTER.</b> LESS, BUT <b>BETTER.</b></span><span aria-hidden="true">✦</span></div>
-      <section class="manifesto" id="story"><div class="section-tag">Our point of view</div><div><h2>좋은 삶은 더 많은 것이 아니라,<br /><strong>더 나다운 것</strong>에서 시작된다고 믿습니다.</h2><p>우리는 빠르게 소비되는 유행보다 시간이 지나도 자연스럽게 남는 선택을 고민합니다. 손끝에 닿는 질감, 공간에 머무는 빛, 하루를 바꾸는 작은 습관까지. OAR는 삶의 여백을 함께 발견하는 브랜드입니다.</p></div></section>
-      <section class="values" id="values"><div class="values-header"><div class="section-tag">What we believe</div><h3>우리의 세 가지 기준</h3></div><div class="value-grid"><article class="value"><span class="value-no">01</span><h4>진솔함</h4><p>무엇을 만들고 왜 만드는지, 언제나 투명하고 정직하게 이야기합니다.</p></article><article class="value"><span class="value-no">02</span><h4>감각</h4><p>눈에 보이는 아름다움과 손에 남는 경험, 그 사이의 균형을 찾습니다.</p></article><article class="value"><span class="value-no">03</span><h4>지속성</h4><p>오늘의 편리함보다 내일에도 기분 좋게 사용할 수 있는 방식을 택합니다.</p></article></div></section>
-      <section class="closing" id="contact"><h2>당신의 하루에<br /><i>머무를 장면</i>을 만듭니다.</h2><div class="closing-bottom"><span>SEOUL · KOREA<br />© OAR 2026</span><a class="footer-link" href="mailto:hello@oar.kr">hello@oar.kr ↗</a></div></section>
-    </main>
+    <div class="wrap">
+      <header class="nav"><a class="brand" href="#top"><span class="brand-mark">肄?/span>肄⑸떎由?/a><nav><a href="#story">肄⑸떎由??댁빞湲?/a><a href="#life">?쇱긽??湲곕줉</a><a href="#threads">Threads</a></nav></header>
+      <main id="top">
+        <section class="hero">
+          <div><span class="tag">?뙼 ?ㅻ뒛???④퍡, ?ㅼ젙?섍쾶</span><h1>?됰쾾???섎（瑜?br /><em>?뺤꽦?쇰줈</em> ?댁븘媛묐땲??</h1><p>?쇨낵 媛?? 洹몃━怨?援먰쉶?먯꽌 留뚮굹???щ엺?ㅼ쓣 ?뺤꽦猿??뚮낫硫??댁븘媛??肄⑸떎由ъ엯?덈떎. ?묒? ???쇱? ?곕쑜???몄궗, ?④퍡 遺瑜대뒗 李ъ뼇 ?띿뿉???ㅻ뒛??媛먯궗瑜?湲곕줉?⑸땲??</p><a class="button" href="https://www.threads.com/@kongdarypa" target="_blank" rel="noreferrer">Threads?먯꽌 留뚮굹??<span>??/span></a></div>
+          <div class="illustration" aria-label="?곕쑜???앺긽怨??앸Ъ???쒗쁽???쇰윭?ㅽ듃"><div class="sun"></div><div class="plant"></div><div class="leaf one"></div><div class="leaf two"></div><div class="table"></div><div class="plate"></div><div class="bowl"></div><span class="note">A WARM ORDINARY DAY</span></div>
+        </section>
+      </main>
+    </div>
+    <div class="quote">?쒗룊踰뷀븳 ?섎（瑜??뺤꽦?쇰줈 ?댁븘?대㈃, ?꾧뎔媛?먭쾶?????꾨줈? ?щ옉???⑸땲????/div>
+    <div class="wrap">
+      <section class="story" id="story"><div><span class="eyebrow">My story</span><h2>?????닿린 ?꾪빐,<br />議곌툑 泥쒖쿇??br />?뺣━?섎뒗 以묒엯?덈떎.</h2></div><p class="story-copy">?ъ뾽???뺣━?섎ŉ ?띠쓽 ?곗꽑?쒖쐞瑜??ㅼ떆 諛곗슦怨??덉뒿?덈떎. 吏묒뿉?쒕뒗 ?붾━? ?≪븘, ?대┝?쇰줈 媛議깆쓽 ?섎（瑜?留뚮뱾怨? 援먰쉶?먯꽌??李ъ뼇怨?援먰넻遊됱궗, 留먯?怨듬?濡??④퍡?⑸땲??<br /><br />?밸퀎?섏? ?딆븘???뚯쨷???섎（?? 洹??덉뿉??諛쒓껄???앺솢??吏?쒖? 媛먯궗??留덉쓬???섎늻怨??띠뒿?덈떎.</p></section>
+      <section class="pillars" id="life"><div class="section-head"><div><span class="eyebrow">Daily notes</span><h2>肄⑸떎由ш? 湲곕줉?섎뒗 寃?/h2></div><p>嫄곗갹???듬낫???ㅻ뒛??議곌툑 ???ㅼ젙?섍쾶 留뚮뱶???댁빞湲곕? ?꾪빀?덈떎.</p></div><div class="grid"><article class="card"><span class="num">01</span><h3>?ㅻ뒛??吏?/h3><p>?붾━, ?≪븘, ?대┝?쇰줈 留뚮뱶??媛議깆쓽 ?곕쑜???섎（</p></article><article class="card"><span class="num">02</span><h3>?ш????섎（</h3><p>援먰쉶? ?댁썐?먯꽌 留뚮궃 ?ㅼ젙???몄궗? ?④퍡???쒓컙</p></article><article class="card"><span class="num">03</span><h3>?ㅼ떆 ?섎뒗 ??/h3><p>?쇨낵 ?띠쓽 洹좏삎??李얠븘媛硫?諛곗슦???좏깮怨??쒕룄</p></article><article class="card"><span class="num">04</span><h3>?ㅼ젙?????/h3><p>?④퍡 ?껉퀬 ?섎늻怨??띠? ?뚯냼??吏덈Ц怨??앷컖</p></article></div></section>
+      <section class="threads" id="threads"><div><h2>?ㅻ뒛??媛곸옄???먮━?먯꽌<br />?좎벐???뱀떊???묒썝?⑸땲??</h2><p>肄⑸떎由ъ쓽 ?쇱긽? Threads?먯꽌 ?댁뼱吏묐땲??</p></div><a class="button" href="https://www.threads.com/@kongdarypa" target="_blank" rel="noreferrer">@kongdarypa <span>??/span></a></section>
+      <footer><span>肄⑸떎由?쨌 KONGDARYPA</span><span>짤 2026 쨌 ?ㅻ뒛???④퍡, ?ㅼ젙?섍쾶</span></footer>
+    </div>
   </body>
 </html>
