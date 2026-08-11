@@ -3,71 +3,85 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#fff8ec" />
-    <meta name="description" content="일과 가정, 교회에서 정성을 나누는 콩다리의 따뜻한 생활 기록" />
+    <meta name="theme-color" content="#173b35" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <title>콩다리 — 오늘도 함께, 다정하게</title>
+    <link rel="apple-touch-icon" href="favicon.svg" />
+    <title>OAR — 고요를 설계합니다</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet" />
     <style>
-      :root { --cream:#fff8ec; --ink:#28261f; --yellow:#f5c52d; --green:#577b59; --sage:#dfe8d8; --coral:#d96e4e; --line:rgba(40,38,31,.15); }
-      * { box-sizing:border-box; } html { scroll-behavior:smooth; }
-      body { margin:0; color:var(--ink); background:var(--cream); font-family:Pretendard,Arial,sans-serif; word-break:keep-all; }
+      :root { --ink:#173b35; --paper:#f4f0e8; --clay:#c86849; --mist:#dce5d9; --line:rgba(23,59,53,.2); }
+      * { box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body { margin:0; color:var(--ink); background:var(--paper); font-family:"DM Sans",sans-serif; }
       a { color:inherit; text-decoration:none; }
-      .wrap { width:min(1160px,calc(100% - 48px)); margin:auto; }
-      .nav { min-height:78px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); }
-      .brand { display:flex; align-items:center; gap:10px; font-family:"Gowun Batang",serif; font-size:25px; font-weight:700; letter-spacing:-.08em; }
-      .brand-mark { width:29px; height:29px; display:grid; place-items:center; border-radius:50%; background:var(--yellow); font:700 16px/1 Arial; }
-      .nav nav { display:flex; gap:26px; font-size:14px; color:rgba(40,38,31,.7); }
-      .nav nav a:hover { color:var(--green); }
-      .hero { display:grid; grid-template-columns:1.05fr .95fr; gap:64px; min-height:600px; align-items:center; padding:72px 0 68px; }
-      .tag { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:99px; background:var(--sage); font-size:13px; font-weight:600; color:#436747; }
-      h1,h2,h3 { font-family:"Gowun Batang",serif; font-weight:700; letter-spacing:-.07em; }
-      h1 { margin:24px 0 22px; font-size:clamp(48px,6vw,78px); line-height:1.23; }
-      h1 em { color:var(--coral); font-style:normal; }
-      .hero p { max-width:480px; margin:0; font-size:17px; line-height:1.85; color:rgba(40,38,31,.74); }
-      .button { display:inline-flex; align-items:center; gap:10px; margin-top:32px; padding:14px 18px; border-radius:4px; background:var(--ink); color:#fff; font-size:14px; font-weight:600; transition:transform .2s,background .2s; }
-      .button:hover { transform:translateY(-2px); background:var(--green); }
-      .illustration { position:relative; min-height:410px; border-radius:190px 190px 28px 28px; background:var(--sage); overflow:hidden; }
-      .sun { position:absolute; width:155px; height:155px; border-radius:50%; background:var(--yellow); top:51px; right:19%; }
-      .table { position:absolute; width:125%; height:180px; left:-12%; bottom:-77px; border-radius:50%; background:#b66b4c; }
-      .plate { position:absolute; width:150px; height:50px; bottom:77px; left:21%; border-radius:50%; background:#fff9ee; box-shadow:0 9px 0 #e9cfad; }
-      .bowl { position:absolute; width:92px; height:45px; bottom:108px; left:29%; border-radius:8px 8px 45px 45px; background:var(--green); }
-      .plant { position:absolute; right:17%; bottom:91px; width:6px; height:156px; background:#48664a; transform:rotate(-18deg); transform-origin:bottom; }
-      .leaf { position:absolute; width:64px; height:33px; border-radius:100% 0 100% 0; background:#71936a; }
-      .leaf.one { right:12%; bottom:198px; transform:rotate(13deg); } .leaf.two { right:27%; bottom:151px; transform:scaleX(-1) rotate(22deg); }
-      .note { position:absolute; left:30px; bottom:26px; font-size:12px; font-weight:600; color:rgba(255,255,255,.85); letter-spacing:.04em; }
-      .quote { padding:28px 0; background:var(--green); color:#fffaf0; text-align:center; font-family:"Gowun Batang",serif; font-size:clamp(19px,2.3vw,28px); letter-spacing:-.05em; }
-      section { scroll-margin-top:20px; } .story { display:grid; grid-template-columns:.75fr 1.25fr; gap:9vw; padding:130px 0; }
-      .eyebrow { font-size:12px; font-weight:700; letter-spacing:.12em; color:var(--coral); text-transform:uppercase; }
-      h2 { margin:20px 0 0; font-size:clamp(36px,4.5vw,60px); line-height:1.35; }
-      .story-copy { padding-top:65px; font-size:17px; line-height:1.9; color:rgba(40,38,31,.76); }
-      .pillars { padding:0 0 130px; } .section-head { display:flex; justify-content:space-between; align-items:end; gap:30px; padding-bottom:23px; border-bottom:1px solid var(--ink); }
-      .section-head h2 { margin:10px 0 0; font-size:36px; }.section-head p { margin:0; max-width:290px; font-size:14px; line-height:1.6; color:rgba(40,38,31,.7); }
-      .grid { display:grid; grid-template-columns:repeat(4,1fr); } .card { min-height:260px; padding:27px 22px; border-right:1px solid var(--line); } .card:first-child{padding-left:0}.card:last-child{border:0}
-      .card .num { font-size:12px; font-weight:700; color:var(--coral); }.card h3 { margin:62px 0 13px; font-size:28px; }.card p { margin:0; font-size:14px; line-height:1.7; color:rgba(40,38,31,.74); }
-      .threads { margin-bottom:90px; padding:53px 6vw; border-radius:16px; background:var(--yellow); display:flex; align-items:center; justify-content:space-between; gap:35px; }.threads h2 { margin:0; font-size:clamp(30px,3.4vw,45px); line-height:1.34; }.threads p { margin:12px 0 0; font-size:15px; line-height:1.7; }.threads .button { flex:0 0 auto; margin:0; background:var(--ink); }
-      footer { padding:28px 0 34px; border-top:1px solid var(--line); display:flex; justify-content:space-between; font-size:13px; color:rgba(40,38,31,.65); }
-      @media (max-width:780px) { .wrap { width:min(100% - 40px,1160px); }.nav{min-height:66px}.nav nav{display:none}.hero{grid-template-columns:1fr;gap:41px;padding:51px 0 0;min-height:0}.hero p{font-size:15px}.illustration{min-height:330px;border-radius:150px 150px 0 0;margin:0 -20px}.story{grid-template-columns:1fr;gap:26px;padding:88px 0}.story-copy{padding:0;font-size:15px}.pillars{padding-bottom:85px}.section-head{display:block}.section-head p{margin-top:16px}.grid{grid-template-columns:1fr 1fr}.card{min-height:210px;padding:23px 14px;border-bottom:1px solid var(--line)}.card:nth-child(odd){padding-left:0}.card:nth-child(even){border-right:0}.card h3{margin:38px 0 10px;font-size:25px}.threads{margin:0 -20px 64px;border-radius:0;display:block;padding:45px 20px}.threads .button{margin-top:25px}footer{display:block;line-height:1.8}.sun{width:125px;height:125px}.plant{right:22%;}.note{left:25px} }
+      .nav { height:84px; display:flex; align-items:center; justify-content:space-between; padding:0 5.8vw; border-bottom:1px solid var(--line); }
+      .logo { font-size:24px; font-weight:700; letter-spacing:-.11em; }
+      .logo span { color:var(--clay); }
+      .nav-links { display:flex; gap:29px; font-size:13px; font-weight:500; }
+      .nav-links a { transition:opacity .2s; } .nav-links a:hover { opacity:.55; }
+      .menu { display:none; border:0; background:none; font:inherit; color:inherit; }
+      .hero { min-height:680px; padding:72px 5.8vw 46px; display:grid; grid-template-columns:1.02fr .98fr; gap:50px; position:relative; overflow:hidden; }
+      .eyebrow, .section-tag { font-family:"DM Mono",monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; }
+      .eyebrow::before, .section-tag::before { content:""; display:inline-block; width:20px; border-top:1px solid currentColor; margin:0 9px 3px 0; }
+      h1 { font-family:"Nanum Myeongjo",serif; font-size:clamp(57px,7.2vw,112px); font-weight:400; line-height:1.08; letter-spacing:-.075em; margin:58px 0 30px; max-width:710px; }
+      h1 em { color:var(--clay); font-style:normal; }
+      .hero-copy { font-size:17px; line-height:1.7; max-width:420px; margin:0 0 36px; color:rgba(23,59,53,.82); }
+      .btn { display:inline-flex; align-items:center; gap:35px; padding:15px 19px; background:var(--ink); color:var(--paper); font-size:13px; transition:transform .2s, background .2s; }
+      .btn:hover { background:var(--clay); transform:translateY(-2px); }
+      .arrow { font-size:19px; line-height:10px; }
+      .hero-art { align-self:end; height:540px; position:relative; background:var(--mist); overflow:hidden; }
+      .sun { width:285px; aspect-ratio:1; border-radius:50%; background:#f1bc77; position:absolute; top:58px; left:50%; transform:translateX(-50%); }
+      .hill { position:absolute; width:170%; aspect-ratio:1.45; background:var(--ink); border-radius:50% 50% 0 0; bottom:-45%; left:-35%; }
+      .hill::after { content:""; position:absolute; width:58%; aspect-ratio:1; background:#31574d; border-radius:50%; right:-3%; top:-20%; }
+      .stem { height:230px; width:3px; background:var(--clay); position:absolute; right:22%; bottom:0; transform:rotate(15deg); transform-origin:bottom; }
+      .leaf { position:absolute; width:80px; height:39px; background:var(--clay); border-radius:100% 0 100% 0; right:16%; bottom:145px; transform:rotate(-4deg); }
+      .leaf.two { right:28%; bottom:210px; transform:scaleX(-1) rotate(-8deg); background:#df8c5d; }
+      .hero-note { position:absolute; font:11px "DM Mono",monospace; writing-mode:vertical-rl; right:12px; bottom:17px; letter-spacing:.12em; }
+      .ticker { padding:20px 5.8vw; background:var(--ink); color:var(--paper); display:flex; justify-content:space-between; align-items:center; overflow:hidden; }
+      .ticker span { font-family:"Nanum Myeongjo",serif; font-size:21px; white-space:nowrap; } .ticker b { color:#f1bc77; padding:0 26px; }
+      .manifesto { padding:150px 5.8vw; display:grid; grid-template-columns:1fr 2fr; gap:10vw; }
+      .manifesto h2 { font-family:"Nanum Myeongjo",serif; font-size:clamp(34px,4.4vw,66px); font-weight:400; line-height:1.35; letter-spacing:-.06em; margin:0; }
+      .manifesto h2 strong { color:var(--clay); font-weight:400; }
+      .manifesto p { margin:128px 0 0; max-width:480px; font-size:17px; line-height:1.8; }
+      .values { padding:0 5.8vw 145px; } .values-header { display:flex; justify-content:space-between; align-items:end; padding-bottom:22px; border-bottom:1px solid var(--ink); }
+      h3 { font-family:"Nanum Myeongjo",serif; font-size:36px; font-weight:400; letter-spacing:-.05em; margin:0; }
+      .value-grid { display:grid; grid-template-columns:repeat(3,1fr); }
+      .value { min-height:270px; padding:29px 25px; border-right:1px solid var(--line); } .value:first-child { padding-left:0; } .value:last-child { border:0; }
+      .value-no { font:11px "DM Mono",monospace; color:var(--clay); } .value h4 { font-family:"Nanum Myeongjo",serif; font-size:29px; font-weight:400; margin:72px 0 12px; }
+      .value p { font-size:14px; line-height:1.65; max-width:250px; margin:0; }
+      .channel { padding:0 5.8vw 145px; }
+      .channel-top { display:flex; justify-content:space-between; align-items:end; gap:30px; margin-bottom:25px; }
+      .channel-top h3 { max-width:540px; }
+      .channel-link { display:inline-flex; align-items:center; gap:10px; font:12px "DM Mono",monospace; border-bottom:1px solid var(--ink); padding-bottom:6px; white-space:nowrap; }
+      .channel-window { background:#fff; border:1px solid var(--ink); box-shadow:10px 10px 0 var(--ink); overflow:hidden; }
+      .channel-banner { min-height:205px; padding:31px 4.2%; background:var(--ink); color:var(--paper); position:relative; overflow:hidden; display:flex; align-items:end; }
+      .channel-banner::before { content:""; width:335px; height:335px; border:1px solid rgba(244,240,232,.32); border-radius:50%; position:absolute; right:13%; bottom:-230px; }
+      .channel-banner::after { content:"KONGDARY"; color:var(--clay); font:700 clamp(47px,7vw,104px) "DM Sans",sans-serif; letter-spacing:-.11em; position:absolute; right:5%; top:12px; opacity:.95; }
+      .channel-brand { position:relative; z-index:1; display:flex; align-items:center; gap:17px; }
+      .play-mark { width:55px; height:55px; border-radius:50%; background:var(--clay); display:grid; place-items:center; box-shadow:0 0 0 7px rgba(200,104,73,.2); }
+      .play-mark::after { content:""; margin-left:4px; border-top:9px solid transparent; border-bottom:9px solid transparent; border-left:13px solid var(--paper); }
+      .channel-brand small { display:block; font:11px "DM Mono",monospace; color:#b5c5b6; margin-bottom:3px; }.channel-brand strong { font-size:20px; letter-spacing:-.04em; }
+      .channel-body { padding:22px 4.2% 31px; }.channel-meta { display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); padding-bottom:20px; }
+      .channel-meta p { margin:0; font-size:13px; }.channel-meta p span { color:rgba(23,59,53,.56); margin-left:9px; }.subscribe { background:#e8342a; color:white; padding:11px 16px; font-size:12px; font-weight:700; }
+      .video-row { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; padding-top:23px; }.video-card { min-width:0; }.video-thumb { aspect-ratio:16/9; position:relative; overflow:hidden; background:var(--mist); }.video-thumb::after { content:""; position:absolute; inset:0; background:linear-gradient(135deg,transparent 45%,rgba(23,59,53,.12)); }.video-thumb.one { background:linear-gradient(145deg,#dce5d9 0 45%,#f1bc77 45% 64%,#173b35 64%); }.video-thumb.two { background:linear-gradient(135deg,#c86849 0 42%,#f4f0e8 42% 57%,#31574d 57%); }.video-thumb.three { background:linear-gradient(150deg,#173b35 0 48%,#dce5d9 48% 67%,#c86849 67%); }.thumb-play { width:35px; height:35px; border-radius:50%; background:rgba(255,255,255,.92); position:absolute; z-index:1; left:14px; bottom:13px; display:grid; place-items:center; }.thumb-play::after { content:""; margin-left:3px; border-top:5px solid transparent; border-bottom:5px solid transparent; border-left:8px solid var(--ink); }.video-card h4 { margin:11px 0 4px; font-size:15px; line-height:1.4; letter-spacing:-.03em; }.video-card p { margin:0; color:rgba(23,59,53,.58); font-size:11px; }
+      .closing { background:var(--clay); color:#fff9ef; min-height:455px; padding:80px 5.8vw 44px; display:flex; flex-direction:column; justify-content:space-between; }
+      .closing h2 { font-family:"Nanum Myeongjo",serif; font-size:clamp(47px,6.2vw,93px); font-weight:400; letter-spacing:-.075em; line-height:1.12; margin:0; max-width:850px; }
+      .closing h2 i { font-style:normal; color:#173b35; } .closing-bottom { display:flex; justify-content:space-between; align-items:end; font-size:13px; }
+      .footer-link { border-bottom:1px solid currentColor; padding-bottom:5px; }
+      @media(max-width:720px) { .nav { height:68px; padding:0 24px; } .nav-links { display:none; } .menu{display:block;font-size:13px}.hero{padding:45px 24px 0;grid-template-columns:1fr;gap:42px;min-height:0}h1{font-size:55px;margin:39px 0 24px}.hero-copy{font-size:15px}.hero-art{height:370px;margin:0 -24px}.ticker{padding:16px 24px}.ticker span{font-size:17px}.manifesto{padding:90px 24px;grid-template-columns:1fr;gap:25px}.manifesto p{margin:0;font-size:15px}.values{padding:0 24px 80px}.values-header{align-items:start;gap:25px}.values-header h3{font-size:28px}.value-grid{grid-template-columns:1fr}.value{min-height:auto;padding:28px 0;border-right:0;border-bottom:1px solid var(--line)}.value h4{margin:37px 0 10px}.channel{padding:0 24px 86px}.channel-top{align-items:start;flex-direction:column;margin-bottom:22px}.channel-top h3{font-size:30px}.channel-window{box-shadow:6px 6px 0 var(--ink)}.channel-banner{min-height:180px;padding:22px}.channel-banner::after{font-size:54px;right:7px}.channel-meta{align-items:start;gap:13px;flex-direction:column}.video-row{grid-template-columns:1fr;gap:25px}.closing{min-height:400px;padding:55px 24px 28px}.closing-bottom{gap:20px;align-items:start;flex-direction:column}.sun{width:210px}.hill{bottom:-35%} }
     </style>
   </head>
   <body>
-    <div class="wrap">
-      <header class="nav"><a class="brand" href="#top"><span class="brand-mark">콩</span>콩다리</a><nav><a href="#story">콩다리 이야기</a><a href="#life">일상의 기록</a><a href="#threads">Threads</a></nav></header>
-      <main id="top">
-        <section class="hero">
-          <div><span class="tag">🌿 오늘도 함께, 다정하게</span><h1>평범한 하루를<br /><em>정성으로</em> 살아갑니다.</h1><p>일과 가정, 그리고 교회에서 만나는 사람들을 정성껏 돌보며 살아가는 콩다리입니다. 작은 한 끼와 따뜻한 인사, 함께 부르는 찬양 속에서 오늘의 감사를 기록합니다.</p><a class="button" href="https://www.threads.com/@kongdarypa" target="_blank" rel="noreferrer">Threads에서 만나요 <span>↗</span></a></div>
-          <div class="illustration" aria-label="따뜻한 식탁과 식물을 표현한 일러스트"><div class="sun"></div><div class="plant"></div><div class="leaf one"></div><div class="leaf two"></div><div class="table"></div><div class="plate"></div><div class="bowl"></div><span class="note">A WARM ORDINARY DAY</span></div>
-        </section>
-      </main>
-    </div>
-    <div class="quote">“평범한 하루를 정성으로 살아내면, 누군가에게는 큰 위로와 사랑이 됩니다.”</div>
-    <div class="wrap">
-      <section class="story" id="story"><div><span class="eyebrow">My story</span><h2>더 잘 살기 위해,<br />조금 천천히<br />정리하는 중입니다.</h2></div><p class="story-copy">사업을 정리하며 삶의 우선순위를 다시 배우고 있습니다. 집에서는 요리와 육아, 살림으로 가족의 하루를 만들고, 교회에서는 찬양과 교통봉사, 말씀공부로 함께합니다.<br /><br />특별하지 않아도 소중한 하루들. 그 안에서 발견한 생활의 지혜와 감사의 마음을 나누고 싶습니다.</p></section>
-      <section class="pillars" id="life"><div class="section-head"><div><span class="eyebrow">Daily notes</span><h2>콩다리가 기록하는 것</h2></div><p>거창한 답보다 오늘을 조금 더 다정하게 만드는 이야기를 전합니다.</p></div><div class="grid"><article class="card"><span class="num">01</span><h3>오늘의 집</h3><p>요리, 육아, 살림으로 만드는 가족의 따뜻한 하루</p></article><article class="card"><span class="num">02</span><h3>섬김의 하루</h3><p>교회와 이웃에서 만난 다정한 인사와 함께한 시간</p></article><article class="card"><span class="num">03</span><h3>다시 하는 일</h3><p>일과 삶의 균형을 찾아가며 배우는 선택과 태도</p></article><article class="card"><span class="num">04</span><h3>다정한 대화</h3><p>함께 웃고 나누고 싶은 소소한 질문과 생각</p></article></div></section>
-      <section class="threads" id="threads"><div><h2>오늘도 각자의 자리에서<br />애쓰는 당신을 응원합니다.</h2><p>콩다리의 일상은 Threads에서 이어집니다.</p></div><a class="button" href="https://www.threads.com/@kongdarypa" target="_blank" rel="noreferrer">@kongdarypa <span>↗</span></a></section>
-      <footer><span>콩다리 · KONGDARYPA</span><span>© 2026 · 오늘도 함께, 다정하게</span></footer>
-    </div>
+    <header class="nav"><a class="logo" href="#top">O<span>·</span>AR</a><nav class="nav-links"><a href="#story">우리의 이야기</a><a href="#values">가치</a><a href="#contact">문의하기</a></nav><button class="menu" aria-label="메뉴 열기">MENU</button></header>
+    <main id="top">
+      <section class="hero"><div><div class="eyebrow">A slower kind of living</div><h1>일상에<br /><em>고요를</em> 설계합니다.</h1><p class="hero-copy">OAR는 바쁜 일상 속에도 나만의 리듬을 찾을 수 있도록, 오래 곁에 둘 물건과 경험을 만듭니다.</p><a class="btn" href="#story">OAR 이야기 보기 <span class="arrow">↗</span></a></div><div class="hero-art" aria-label="일몰과 식물을 표현한 추상 일러스트"><div class="sun"></div><div class="hill"></div><div class="stem"></div><div class="leaf"></div><div class="leaf two"></div><span class="hero-note">OAR / 01</span></div></section>
+      <div class="ticker"><span>LESS, BUT <b>BETTER.</b> LESS, BUT <b>BETTER.</b></span><span aria-hidden="true">✦</span></div>
+      <section class="manifesto" id="story"><div class="section-tag">Our point of view</div><div><h2>좋은 삶은 더 많은 것이 아니라,<br /><strong>더 나다운 것</strong>에서 시작된다고 믿습니다.</h2><p>우리는 빠르게 소비되는 유행보다 시간이 지나도 자연스럽게 남는 선택을 고민합니다. 손끝에 닿는 질감, 공간에 머무는 빛, 하루를 바꾸는 작은 습관까지. OAR는 삶의 여백을 함께 발견하는 브랜드입니다.</p></div></section>
+      <section class="values" id="values"><div class="values-header"><div class="section-tag">What we believe</div><h3>우리의 세 가지 기준</h3></div><div class="value-grid"><article class="value"><span class="value-no">01</span><h4>진솔함</h4><p>무엇을 만들고 왜 만드는지, 언제나 투명하고 정직하게 이야기합니다.</p></article><article class="value"><span class="value-no">02</span><h4>감각</h4><p>눈에 보이는 아름다움과 손에 남는 경험, 그 사이의 균형을 찾습니다.</p></article><article class="value"><span class="value-no">03</span><h4>지속성</h4><p>오늘의 편리함보다 내일에도 기분 좋게 사용할 수 있는 방식을 택합니다.</p></article></div></section>
+      <section class="channel" id="channel"><div class="channel-top"><div><div class="section-tag">On YouTube</div><h3>영상으로 만나는<br />KONGDARY TV</h3></div><a class="channel-link" href="https://www.youtube.com/@kongdarytv" target="_blank" rel="noreferrer">채널 방문하기 ↗</a></div><a class="channel-window" href="https://www.youtube.com/@kongdarytv" target="_blank" rel="noreferrer" aria-label="KONGDARY TV 유튜브 채널 열기"><div class="channel-banner"><div class="channel-brand"><div class="play-mark"></div><div><small>YOUTUBE CHANNEL</small><strong>KONGDARY TV</strong></div></div></div><div class="channel-body"><div class="channel-meta"><p>@kongdarytv <span>새로운 이야기를 영상으로 전합니다.</span></p><span class="subscribe">채널 구독하기</span></div><div class="video-row"><article class="video-card"><div class="video-thumb one"><span class="thumb-play"></span></div><h4>오늘을 기록하는 작은 장면들</h4><p>KONGDARY TV · 최신 영상</p></article><article class="video-card"><div class="video-thumb two"><span class="thumb-play"></span></div><h4>우리의 감각이 머무는 공간</h4><p>KONGDARY TV · 플레이리스트</p></article><article class="video-card"><div class="video-thumb three"><span class="thumb-play"></span></div><h4>느린 일상을 위한 이야기</h4><p>KONGDARY TV · 더 보기</p></article></div></div></a></section>
+      <section class="closing" id="contact"><h2>당신의 하루에<br /><i>머무를 장면</i>을 만듭니다.</h2><div class="closing-bottom"><span>SEOUL · KOREA<br />© OAR 2026</span><a class="footer-link" href="mailto:hello@oar.kr">hello@oar.kr ↗</a></div></section>
+    </main>
   </body>
 </html>
