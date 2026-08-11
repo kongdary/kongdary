@@ -1,4 +1,4 @@
-const REQUIRED_ENV = ['SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY', 'RESEND_API_KEY', 'CONTACT_TO_EMAIL', 'CONTACT_FROM_EMAIL'];
+const REQUIRED_ENV = ['SUPABASE_URL', 'SUPABASE_ANON_KEY'];
 
 function readText(value, maxLength) {
   return typeof value === 'string' ? value.trim().slice(0, maxLength) : '';
@@ -19,16 +19,9 @@ export default async function handler(request, response) {
 
   const insert = await fetch(`${process.env.SUPABASE_URL}/rest/v1/contact_requests`, {
     method: 'POST',
-    headers: { apikey: process.env.SUPABASE_SERVICE_ROLE_KEY, Authorization: `Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY}`, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+    headers: { apikey: process.env.SUPABASE_ANON_KEY, Authorization: `Bearer ${process.env.SUPABASE_ANON_KEY}`, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
     body: JSON.stringify({ name, email, topic, message, consented_at: new Date().toISOString() })
   });
   if (!insert.ok) return response.status(500).json({ message: '이야기를 저장하지 못했습니다. 잠시 후 다시 시도해 주세요.' });
-
-  const notice = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from: process.env.CONTACT_FROM_EMAIL, to: [process.env.CONTACT_TO_EMAIL], subject: `[콩다리 이야기] ${topic}`, text: `이름: ${name}\n이메일: ${email}\n주제: ${topic}\n\n${message}` })
-  });
-  if (!notice.ok) console.error('Contact email notification failed');
   return response.status(201).json({ message: '이야기가 전달되었습니다.' });
 }
