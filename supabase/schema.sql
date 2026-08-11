@@ -11,6 +11,26 @@ create table if not exists public.contact_requests (
 
 alter table public.contact_requests enable row level security;
 
--- 공개 역할에는 읽기·쓰기 권한을 주지 않습니다.
--- Vercel 서버에서만 service_role 키로 접수 내용을 처리합니다.
+drop policy if exists "Anyone can submit a contact request" on public.contact_requests;
+drop policy if exists "Kongdary admin can view requests" on public.contact_requests;
+drop policy if exists "Kongdary admin can update requests" on public.contact_requests;
+drop policy if exists "Kongdary admin can delete requests" on public.contact_requests;
+
+create policy "Anyone can submit a contact request"
+on public.contact_requests for insert to anon, authenticated
+with check (true);
+
+create policy "Kongdary admin can view requests"
+on public.contact_requests for select to authenticated
+using ((auth.jwt() ->> 'email') = 'agfe92@nate.com');
+
+create policy "Kongdary admin can update requests"
+on public.contact_requests for update to authenticated
+using ((auth.jwt() ->> 'email') = 'agfe92@nate.com')
+with check ((auth.jwt() ->> 'email') = 'agfe92@nate.com');
+
+create policy "Kongdary admin can delete requests"
+on public.contact_requests for delete to authenticated
+using ((auth.jwt() ->> 'email') = 'agfe92@nate.com');
+
 create index if not exists contact_requests_created_at_idx on public.contact_requests (created_at);
