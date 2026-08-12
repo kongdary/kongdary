@@ -1,6 +1,7 @@
 const YOUTUBE_API = 'https://www.googleapis.com/youtube/v3';
 const CHANNEL_HANDLE = '@kongdarytv';
 const MAX_VIDEOS = 500;
+const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY || process.env.Youtube_api_key;
 
 function apiUrl(path, params) {
   const url = new URL(`${YOUTUBE_API}/${path}`);
@@ -9,14 +10,14 @@ function apiUrl(path, params) {
 }
 
 async function youtube(path, params) {
-  const response = await fetch(apiUrl(path, { ...params, key: process.env.YOUTUBE_API_KEY }));
+  const response = await fetch(apiUrl(path, { ...params, key: YOUTUBE_API_KEY }));
   if (!response.ok) throw new Error(`YouTube API request failed: ${response.status}`);
   return response.json();
 }
 
 export default async function handler(request, response) {
   if (request.method !== 'GET') return response.status(405).json({ message: 'Method not allowed' });
-  if (!process.env.YOUTUBE_API_KEY) return response.status(503).json({ message: 'YouTube recommendations are not configured yet.' });
+  if (!YOUTUBE_API_KEY) return response.status(503).json({ message: 'YouTube recommendations are not configured yet.' });
 
   try {
     const channel = await youtube('channels', { part: 'contentDetails', forHandle: CHANNEL_HANDLE });
