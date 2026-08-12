@@ -1,13 +1,13 @@
-const REQUIRED_ENV = ['SUPABASE_URL', 'SUPABASE_ANON_KEY'];
+const SUPABASE_URL = 'https://xulwhgzqyxxhdgqsmoux.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh1bHdoZ3pxeXh4aGRncXNtb3V4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY0NTIyMTcsImV4cCI6MjEwMjAyODIxN30.y_up4RdCJmCZkD7JXVxypBx93pDfuRBzKPdZrmZqem4';
 
 function readText(value, maxLength) {
   return typeof value === 'string' ? value.trim().slice(0, maxLength) : '';
 }
 
 export default async function handler(request, response) {
-  if (request.method !== 'POST') return response.status(405).json({ message: '허용되지 않은 요청입니다.' });
-  if (REQUIRED_ENV.some((key) => !process.env[key])) {
-    return response.status(503).json({ message: '문의 접수 설정을 확인해 주세요.' });
+  if (request.method !== 'POST') {
+    return response.status(405).json({ message: '허용되지 않은 요청입니다.' });
   }
 
   try {
@@ -25,11 +25,11 @@ export default async function handler(request, response) {
       return response.status(400).json({ message: '이메일 형식을 확인하거나 비워 주세요.' });
     }
 
-    const insert = await fetch(`${process.env.SUPABASE_URL}/rest/v1/contact_requests`, {
+    const insert = await fetch(`${SUPABASE_URL}/rest/v1/contact_requests`, {
       method: 'POST',
       headers: {
-        apikey: process.env.SUPABASE_ANON_KEY,
-        Authorization: `Bearer ${process.env.SUPABASE_ANON_KEY}`,
+        apikey: SUPABASE_PUBLISHABLE_KEY,
+        Authorization: `Bearer ${SUPABASE_PUBLISHABLE_KEY}`,
         'Content-Type': 'application/json',
         Prefer: 'return=minimal'
       },
