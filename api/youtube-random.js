@@ -2,6 +2,7 @@ const YOUTUBE_API = 'https://www.googleapis.com/youtube/v3';
 const CHANNEL_HANDLE = '@kongdarytv';
 const MAX_VIDEOS = 500;
 const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY || process.env.Youtube_api_key;
+const MUSIC_TITLE = /ccm|찬양|worship|music|음악|노래|song|ballad|popsong|kpop|piano|jazz|healing|힐링|meditation|연속듣기|피아노|기도|묵상|choir|playlist|플레이리스트/i;
 
 function apiUrl(path, params) {
   const url = new URL(`${YOUTUBE_API}/${path}`);
@@ -31,7 +32,7 @@ export default async function handler(request, response) {
       page.items.forEach((item) => {
         const videoId = item.contentDetails?.videoId;
         const snippet = item.snippet;
-        if (!videoId || !snippet?.title || snippet.title === 'Private video' || snippet.title === 'Deleted video') return;
+        if (!videoId || !snippet?.title || snippet.title === 'Private video' || snippet.title === 'Deleted video' || !MUSIC_TITLE.test(snippet.title)) return;
         videos.push({
           id: videoId,
           title: snippet.title,
