@@ -22,15 +22,15 @@ with check (true);
 
 create policy "Kongdary admin can view requests"
 on public.contact_requests for select to authenticated
-using ((auth.jwt() ->> 'email') = 'agfe92@nate.com');
+using ((auth.jwt() ->> 'email') = 'agfe6981@gmail.com');
 
 create policy "Kongdary admin can update requests"
 on public.contact_requests for update to authenticated
-using ((auth.jwt() ->> 'email') = 'agfe92@nate.com')
-with check ((auth.jwt() ->> 'email') = 'agfe92@nate.com');
+using ((auth.jwt() ->> 'email') = 'agfe6981@gmail.com')
+with check ((auth.jwt() ->> 'email') = 'agfe6981@gmail.com');
 
 create policy "Kongdary admin can delete requests"
 on public.contact_requests for delete to authenticated
-using ((auth.jwt() ->> 'email') = 'agfe92@nate.com');
+using ((auth.jwt() ->> 'email') = 'agfe6981@gmail.com');
 
 create index if not exists contact_requests_created_at_idx on public.contact_requests (created_at);
