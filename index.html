@@ -33,8 +33,8 @@
       body { margin:0; color:var(--ink); background:var(--paper); font-family:"Pretendard Variable","Pretendard","Noto Sans KR",sans-serif; }
       a { color:inherit; text-decoration:none; }
       .nav { height:84px; display:flex; align-items:center; justify-content:space-between; padding:0 5.8vw; border-bottom:1px solid var(--line); }
-      .logo { font-size:24px; font-weight:700; letter-spacing:-.11em; }
-      .logo span { color:var(--clay); }
+      .logo { display:inline-flex; align-items:center; font-size:24px; font-weight:800; letter-spacing:.015em; line-height:1; }
+      .logo span { display:none; }
       .nav-links { display:flex; gap:29px; font-size:13px; font-weight:500; }
       .nav-links a { transition:opacity .2s; } .nav-links a:hover { opacity:.55; }
       .menu { display:none; border:0; background:none; font:inherit; color:inherit; }
@@ -136,9 +136,9 @@
     </style>
   </head>
   <body>
-    <header class="nav"><a class="logo" href="#top">콩<span>·</span>다리</a><nav class="nav-links"><a href="story.html">콩다리 이야기</a><a href="#threads">Threads</a><a href="#channel">유튜브</a><a href="story.html#contact">이야기 남기기</a></nav><button class="menu" aria-label="메뉴 열기">MENU</button></header>
+    <header class="nav"><a class="logo" href="#top">콩다리</a><nav class="nav-links"><a href="story.html">콩다리 이야기</a><a href="#threads">Threads</a><a href="#channel">유튜브</a><a href="story.html#contact">이야기 남기기</a></nav><button class="menu" aria-label="메뉴 열기">MENU</button></header>
     <aside class="mobile-menu" id="mobile-menu" aria-hidden="true">
-      <div class="mobile-menu-head"><a class="logo" href="#top">&#53097;<span>&middot;</span>&#45796;&#47532;</a><button class="mobile-menu-close" type="button" aria-label="&#47700;&#45684; &#45803;&#44592;">CLOSE</button></div>
+      <div class="mobile-menu-head"><a class="logo" href="#top">&#53097;&#45796;&#47532;</a><button class="mobile-menu-close" type="button" aria-label="&#47700;&#45684; &#45803;&#44592;">CLOSE</button></div>
       <nav class="mobile-menu-links" aria-label="&#47784;&#48148;&#51068; &#47700;&#45684;">
         <a href="story.html">&#53097;&#45796;&#47532; &#51060;&#50556;&#44592;<span>01</span></a>
         <a href="#threads">&#44544;&#44284; &#51020;&#50501;<span>02</span></a>
