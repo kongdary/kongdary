@@ -1,0 +1,15 @@
+{
+  "name": "콩다리",
+  "short_name": "콩다리",
+  "description": "따뜻한 공감으로 사람을 위로하고 자신의 길을 만들어가는 콩다리",
+  "lang": "ko-KR",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f4f0e8",
+  "theme_color": "#173b35",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
