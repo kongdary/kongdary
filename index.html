@@ -37,6 +37,7 @@
       .logo span { display:none; }
       .nav-links { display:flex; gap:29px; font-size:13px; font-weight:500; }
       .nav-links a { transition:opacity .2s; } .nav-links a:hover { opacity:.55; }
+      .youtube-quick { position:relative; }.youtube-quick summary { list-style:none; cursor:pointer; padding-bottom:5px; border-bottom:1px solid var(--ink); }.youtube-quick summary::-webkit-details-marker { display:none; }.youtube-quick summary::after { content:"＋"; margin-left:7px; color:var(--clay); }.youtube-quick[open] summary::after { content:"−"; }.youtube-quick-menu { position:absolute; z-index:30; right:0; top:34px; width:190px; padding:8px; background:var(--ink); color:var(--paper); box-shadow:6px 6px 0 var(--clay); }.youtube-quick-menu a { display:flex; align-items:center; justify-content:space-between; padding:12px 10px; border-bottom:1px solid rgba(244,240,232,.18); font-size:12px; white-space:nowrap; }.youtube-quick-menu a:last-child { border-bottom:0; }.youtube-quick-menu a::after { content:"↗"; color:#f1bc77; }
       .menu { display:none; border:0; background:none; font:inherit; color:inherit; }
       .mobile-menu { display:none; }
       .hero { min-height:680px; padding:72px 5.8vw 46px; display:grid; grid-template-columns:1.02fr .98fr; gap:50px; position:relative; overflow:hidden; }
@@ -132,20 +133,20 @@
       .leadership-card small { color:var(--clay); font:11px "DM Mono",monospace; letter-spacing:.08em; }
       .leadership-card h4 { margin:49px 0 10px; font-family:"Gowun Batang",serif; font-size:23px; letter-spacing:-.06em; }
       .leadership-card p { margin:0; font-size:13px; line-height:1.7; color:rgba(23,59,53,.74); }
+      .mobile-youtube-quick { border-bottom:1px solid var(--line); }.mobile-youtube-quick summary { display:flex; align-items:center; justify-content:space-between; padding:19px 0; list-style:none; cursor:pointer; font-size:19px; font-weight:600; }.mobile-youtube-quick summary::-webkit-details-marker { display:none; }.mobile-youtube-quick summary::after { content:"＋"; color:var(--clay); font:16px "DM Mono",monospace; }.mobile-youtube-quick[open] summary::after { content:"−"; }.mobile-youtube-links { display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:0 0 16px; }.mobile-youtube-links a { min-width:0; padding:12px!important; border:1px solid var(--line)!important; background:#fff; font-size:13px!important; }.mobile-youtube-links a::after { content:"↗"; color:var(--clay); }
       @media(max-width:720px) { .mobile-threads-link::before { content:""; background:url('kongdary-mark-v5.png') center/cover no-repeat; font-size:0; } }
       @media(max-width:720px) { h1 { font-size:37px; line-height:1.42; } .hero { padding:54px 24px; background-position:63% center; } .platform-card { min-height:260px; } .ticker span { font-size:11px; letter-spacing:.07em; } .manifesto { display:block; padding:82px 24px; } .manifesto-intro { min-height:auto; display:block; } .leader-mark { width:140px; height:140px; margin:34px 0 0; } .leader-mark::after { transform:scale(.75); transform-origin:top right; } .leader-caption { margin-top:12px; } .manifesto-copy { padding-top:48px; } .manifesto h2 { font-size:31px; } .manifesto .intro-copy { margin:24px 0 34px; font-size:14px; } .leadership-grid { grid-template-columns:1fr; } .leadership-card { min-height:auto; padding:19px 0; border-right:0; border-bottom:1px solid var(--line); } .leadership-card h4 { margin:22px 0 8px; font-size:21px; } .closing h2{font-size:34px;line-height:1.3;letter-spacing:-.065em;word-break:keep-all}.closing h2 span{display:block}.closing-visual{min-height:280px;padding:24px 24px 62px}.closing-visual::before{width:168px;height:168px}.closing-visual::after{left:20px;right:20px;bottom:18px;padding:0;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis} }
     </style>
   </head>
   <body>
-    <header class="nav"><a class="logo" href="#top">콩다리</a><nav class="nav-links"><a href="story.html">콩다리 이야기</a><a href="#threads">Threads</a><a href="#channel">유튜브</a><a href="#worship">찬양과 말씀</a><a href="story.html#contact">이야기 남기기</a></nav><button class="menu" aria-label="메뉴 열기">MENU</button></header>
+    <header class="nav"><a class="logo" href="#top">콩다리</a><nav class="nav-links"><a href="story.html">콩다리 이야기</a><a href="#threads">Threads</a><details class="youtube-quick"><summary>유튜브 바로가기</summary><div class="youtube-quick-menu"><a href="https://www.youtube.com/@kongdarytv" target="_blank" rel="noreferrer">콩다리TV</a><a href="https://www.youtube.com/@anointingworship" target="_blank" rel="noreferrer">어노인팅</a><a href="https://www.youtube.com/@MarkersWorship" target="_blank" rel="noreferrer">마커스워십</a><a href="https://www.youtube.com/@welcomebible" target="_blank" rel="noreferrer">찬양과 말씀</a></div></details><a href="story.html#contact">이야기 남기기</a></nav><button class="menu" aria-label="메뉴 열기">MENU</button></header>
     <aside class="mobile-menu" id="mobile-menu" aria-hidden="true">
       <div class="mobile-menu-head"><a class="logo" href="#top">&#53097;&#45796;&#47532;</a><button class="mobile-menu-close" type="button" aria-label="&#47700;&#45684; &#45803;&#44592;">CLOSE</button></div>
       <nav class="mobile-menu-links" aria-label="&#47784;&#48148;&#51068; &#47700;&#45684;">
         <a href="story.html">&#53097;&#45796;&#47532; &#51060;&#50556;&#44592;<span>01</span></a>
         <a href="#threads">&#44544;&#44284; &#51020;&#50501;<span>02</span></a>
-        <a href="#channel">&#50976;&#53916;&#48652;<span>03</span></a>
-        <a href="#worship">찬양과 말씀<span>04</span></a>
-        <a href="story.html#contact">&#51060;&#50556;&#44592; &#45224;&#44592;&#44592;<span>05</span></a>
+        <details class="mobile-youtube-quick"><summary>유튜브 바로가기</summary><div class="mobile-youtube-links"><a href="https://www.youtube.com/@kongdarytv" target="_blank" rel="noreferrer">콩다리TV</a><a href="https://www.youtube.com/@anointingworship" target="_blank" rel="noreferrer">어노인팅</a><a href="https://www.youtube.com/@MarkersWorship" target="_blank" rel="noreferrer">마커스워십</a><a href="https://www.youtube.com/@welcomebible" target="_blank" rel="noreferrer">찬양과 말씀</a></div></details>
+        <a href="story.html#contact">&#51060;&#50556;&#44592; &#45224;&#44592;&#44592;<span>03</span></a>
       </nav>
       <a class="mobile-threads-link" href="https://www.threads.com/@kongdarypa" target="_blank" rel="noreferrer">
         <small>ONLY ON THREADS</small>
