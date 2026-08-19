@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kongdary-v1';
+const CACHE_NAME = 'kongdary-v2';
 const APP_SHELL = ['/', '/index.html', '/story.html', '/favicon.svg', '/icon-192.png', '/icon-512.png', '/hero-kongdary.png', '/kongdary-mark-v5.png'];
 
 self.addEventListener('install', event => {
