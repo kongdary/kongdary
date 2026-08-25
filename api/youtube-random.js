@@ -12,7 +12,7 @@ const WORSHIP_CHANNELS = [
   { key: 'anointing', name: '어노인팅', handle: 'anointingworship', channelUrl: 'https://www.youtube.com/@anointingworship' },
   { key: 'markers', name: '마커스워십', handle: 'MarkersWorship', channelUrl: 'https://www.youtube.com/@MarkersWorship' },
   { key: 'fia', name: '피아워십', handle: 'FIAWORSHIP', channelUrl: 'https://www.youtube.com/@FIAWORSHIP' },
-  { key: 'bible', name: '두란노 생명의 삶', handle: 'CGNLivingLife', channelId: 'UCYguCNtEF-PMsBLDQjZoi_g', channelUrl: 'https://www.youtube.com/@CGNLivingLife', contentType: 'daily-qt' }
+  { key: 'bible', name: '두란노 생명의 삶', handle: 'CGNLivingLife', channelId: 'UCYguCNtEF-PMsBLDQjZoi_g', uploadsPlaylistId: 'UUYguCNtEF-PMsBLDQjZoi_g', channelUrl: 'https://www.youtube.com/@CGNLivingLife', contentType: 'daily-qt' }
 ];
 
 const FALLBACK_DAILY_QT = {
@@ -72,12 +72,15 @@ function formatDuration(seconds) {
 
 async function fetchLatestWorship(channel) {
   try {
-    const channelData = await youtube('channels', {
-      part: 'contentDetails',
-      ...(channel.channelId ? { id: channel.channelId } : { forHandle: channel.handle }),
-      maxResults: '1'
-    });
-    const uploadsId = channelData.items?.[0]?.contentDetails?.relatedPlaylists?.uploads;
+    let uploadsId = channel.uploadsPlaylistId;
+    if (!uploadsId) {
+      const channelData = await youtube('channels', {
+        part: 'contentDetails',
+        ...(channel.channelId ? { id: channel.channelId } : { forHandle: channel.handle }),
+        maxResults: '1'
+      });
+      uploadsId = channelData.items?.[0]?.contentDetails?.relatedPlaylists?.uploads;
+    }
     if (!uploadsId) throw new Error('Uploads playlist not found');
     const uploads = await youtube('playlistItems', { part: 'contentDetails', playlistId: uploadsId, maxResults: channel.contentType === 'daily-qt' ? '30' : '12' });
     const ids = (uploads.items || []).map(item => item.contentDetails?.videoId).filter(Boolean);
