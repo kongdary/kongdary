@@ -25,6 +25,16 @@ const FALLBACK_DAILY_QT = {
   source: 'last-known-good'
 };
 
+const FALLBACK_PREVIOUS_QT = {
+  id: '-vJVG1leASY',
+  title: '성전의 우선순위 (에스겔 44:1-14) 생명의 삶 2026년 8월 21일 기독교 매일 성경 묵상',
+  thumbnail: 'https://i.ytimg.com/vi/-vJVG1leASY/hqdefault.jpg',
+  publishedAt: '2026-08-21T00:00:00Z',
+  duration: '6:42',
+  seconds: 402,
+  source: 'last-known-good'
+};
+
 function isDailyQtTitle(title = '') {
   const normalized = title.toLowerCase();
   const isQt = /(생명의\s*삶|오늘의\s*(qt|큐티|말씀)|daily\s*qt|\bqt\b|큐티)/i.test(normalized);
@@ -175,7 +185,7 @@ export default async function handler(request, response) {
     ]);
     const bible = channelResults.find(channel => channel.key === 'bible');
     const dailyWord = bible ? { ...bible, latest: bible.latest || FALLBACK_DAILY_QT } : null;
-    const worship = channelResults.map(({ alternate, ...channel }) => channel.key === 'bible' && alternate ? { ...channel, latest: alternate } : channel);
+    const worship = channelResults.map(({ alternate, ...channel }) => channel.key === 'bible' ? { ...channel, latest: alternate || FALLBACK_PREVIOUS_QT } : channel);
     response.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=21600');
     return response.status(200).json({ collections, worship, dailyWord, videos: collections[0]?.videos || [] });
   } catch (error) {
