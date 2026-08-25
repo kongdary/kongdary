@@ -16,23 +16,11 @@ export default async function handler(request, response) {
       id: post.id, text: post.text, timestamp: post.timestamp, permalink: post.permalink,
       image: post.thumbnail_url || (post.media_type === 'IMAGE' ? post.media_url : null)
     }));
-    const selectedDate = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul' }).format(new Date());
-    const seed = [...selectedDate].reduce((value, char) => ((value * 31) + char.charCodeAt(0)) >>> 0, 2166136261);
-    const scored = recent.slice(1).map((post, index) => ({ post, score: hash(`${seed}:${post.id}:${index}`) }));
-    scored.sort((a, b) => a.score - b.score);
-    const posts = recent.length ? [recent[0], ...scored.slice(0, 5).map(item => item.post)] : [];
-    response.setHeader('Cache-Control', 's-maxage=86400, stale-while-revalidate=43200');
-    return response.status(200).json({ posts, selection: 'latest-and-daily-random', selectedDate });
+    const random = recent.slice(1).sort(() => Math.random() - 0.5).slice(0, 3);
+    const posts = recent.length ? [recent[0], ...random] : [];
+    response.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=21600');
+    return response.status(200).json({ posts, selection: 'latest-and-random' });
   } catch (error) {
     return response.status(502).json({ message: 'Unable to load Threads posts.' });
   }
-}
-
-function hash(value) {
-  let result = 2166136261;
-  for (let index = 0; index < value.length; index += 1) {
-    result ^= value.charCodeAt(index);
-    result = Math.imul(result, 16777619);
-  }
-  return result >>> 0;
 }
