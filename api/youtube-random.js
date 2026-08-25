@@ -12,34 +12,35 @@ const WORSHIP_CHANNELS = [
   { key: 'anointing', name: '어노인팅', handle: 'anointingworship', channelUrl: 'https://www.youtube.com/@anointingworship' },
   { key: 'markers', name: '마커스워십', handle: 'MarkersWorship', channelUrl: 'https://www.youtube.com/@MarkersWorship' },
   { key: 'fia', name: '피아워십', handle: 'FIAWORSHIP', channelUrl: 'https://www.youtube.com/@FIAWORSHIP' },
-  { key: 'bible', name: '두란노 생명의 삶', handle: 'CGNLivingLife', channelId: 'UCYguCNtEF-PMsBLDQjZoi_g', uploadsPlaylistId: 'UUYguCNtEF-PMsBLDQjZoi_g', channelUrl: 'https://www.youtube.com/@CGNLivingLife', contentType: 'daily-qt' }
+  { key: 'bible', name: '두란노 생명의 삶', handle: 'cgn8459', channelId: 'UCbaI7e7lhkfLSdMUfd5Fy0Q', qtPlaylistId: 'PLrH3J2Hst9zSfUE5jmSkGmOfHQ6V_k0aK', channelUrl: 'https://www.youtube.com/@cgn8459', contentType: 'daily-qt' }
 ];
 
 const FALLBACK_DAILY_QT = {
-  id: 'asquPekHy2g',
-  title: '예배의 회복 (에스겔 45:9-25) 생명의 삶 2026년 8월 24일 기독교 매일 성경 묵상',
-  thumbnail: 'https://i.ytimg.com/vi/asquPekHy2g/hqdefault.jpg',
-  publishedAt: '2026-08-24T00:00:00Z',
-  duration: '6:37',
-  seconds: 397,
+  id: 'vPc56AWgWzo',
+  title: '[생명의 삶 큐티] 하나님께 더 가까이 나아가는 예배 | 에스겔 46:1~15 | 임채영 목사 | 260825QT',
+  thumbnail: 'https://i.ytimg.com/vi/vPc56AWgWzo/hqdefault.jpg',
+  publishedAt: '2026-08-25T00:00:00Z',
+  duration: '14:24',
+  seconds: 864,
   source: 'last-known-good'
 };
 
 const FALLBACK_PREVIOUS_QT = {
-  id: '-vJVG1leASY',
-  title: '성전의 우선순위 (에스겔 44:1-14) 생명의 삶 2026년 8월 21일 기독교 매일 성경 묵상',
-  thumbnail: 'https://i.ytimg.com/vi/-vJVG1leASY/hqdefault.jpg',
-  publishedAt: '2026-08-21T00:00:00Z',
-  duration: '6:42',
-  seconds: 402,
+  id: '842x2W3FCoU',
+  title: '[생명의 삶 큐티] 하나님을 중심에 두는 새 언약 백성 | 에스겔 45:1~8 | 임채영 목사 | 260823QT',
+  thumbnail: 'https://i.ytimg.com/vi/842x2W3FCoU/hqdefault.jpg',
+  publishedAt: '2026-08-23T00:00:00Z',
+  duration: '12:36',
+  seconds: 756,
   source: 'last-known-good'
 };
 
 function isDailyQtTitle(title = '') {
   const normalized = title.toLowerCase();
-  const isQt = /(생명의\s*삶|오늘의\s*(qt|큐티|말씀)|daily\s*qt|\bqt\b|큐티)/i.test(normalized);
-  const excluded = /(shorts?|쇼츠|라이브|live\s*stream|예고|티저)/i.test(normalized);
-  return isQt && !excluded;
+  const hangulCount = (title.match(/[가-힣]/g) || []).length;
+  const isKoreanQt = /(생명의\s*삶|오늘의\s*(qt|큐티|말씀)|한국어\s*(qt|큐티)|큐티)/i.test(normalized);
+  const excluded = /(living\s*life|shorts?|쇼츠|라이브|live\s*stream|예고|티저)/i.test(normalized) || /[ぁ-ゟ゠-ヿ]/.test(title);
+  return hangulCount >= 5 && isKoreanQt && !excluded;
 }
 
 async function fetchDailyQtPageFallback(channel) {
@@ -118,11 +119,11 @@ function formatDuration(seconds) {
 async function fetchLatestWorship(channel) {
   try {
     let ids = [];
-    if (channel.contentType === 'daily-qt') {
-      const search = await youtube('search', {
-        part: 'snippet', channelId: channel.channelId, type: 'video', order: 'date', maxResults: '25'
+    if (channel.contentType === 'daily-qt' && channel.qtPlaylistId) {
+      const qtPlaylist = await youtube('playlistItems', {
+        part: 'contentDetails', playlistId: channel.qtPlaylistId, maxResults: '25'
       });
-      ids = (search.items || []).map(item => item.id?.videoId).filter(Boolean);
+      ids = (qtPlaylist.items || []).map(item => item.contentDetails?.videoId).filter(Boolean);
     } else {
       let uploadsId = channel.uploadsPlaylistId;
       if (!uploadsId) {
