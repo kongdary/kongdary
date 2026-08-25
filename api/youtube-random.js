@@ -12,8 +12,17 @@ const WORSHIP_CHANNELS = [
   { key: 'anointing', name: '어노인팅', handle: 'anointingworship', channelUrl: 'https://www.youtube.com/@anointingworship' },
   { key: 'markers', name: '마커스워십', handle: 'MarkersWorship', channelUrl: 'https://www.youtube.com/@MarkersWorship' },
   { key: 'fia', name: '피아워십', handle: 'FIAWORSHIP', channelUrl: 'https://www.youtube.com/@FIAWORSHIP' },
-  { key: 'bible', name: '매일 성경 말씀듣기', handle: 'welcomebible', channelUrl: 'https://www.youtube.com/@welcomebible' }
+  { key: 'bible', name: '두란노 생명의 삶', handle: 'CGNLivingLife', channelUrl: 'https://www.youtube.com/@CGNLivingLife', contentType: 'daily-qt' }
 ];
+
+const FALLBACK_DAILY_QT = {
+  id: 'Ad3WmFDiPGk',
+  title: '예배의 회복 (에스겔 45:9-25) 생명의 삶 2026년 8월 24일 기독교 매일 성경 묵상',
+  thumbnail: 'https://i.ytimg.com/vi/Ad3WmFDiPGk/hqdefault.jpg',
+  publishedAt: '2026-08-24T00:00:00Z',
+  duration: '6:37',
+  seconds: 397
+};
 
 function apiUrl(path, params) {
   const url = new URL(`${YOUTUBE_API}/${path}`);
@@ -66,7 +75,7 @@ async function fetchLatestWorship(channel) {
     const channelData = await youtube('channels', { part: 'contentDetails', forHandle: channel.handle, maxResults: '1' });
     const uploadsId = channelData.items?.[0]?.contentDetails?.relatedPlaylists?.uploads;
     if (!uploadsId) throw new Error('Uploads playlist not found');
-    const uploads = await youtube('playlistItems', { part: 'contentDetails', playlistId: uploadsId, maxResults: '12' });
+    const uploads = await youtube('playlistItems', { part: 'contentDetails', playlistId: uploadsId, maxResults: channel.contentType === 'daily-qt' ? '30' : '12' });
     const ids = (uploads.items || []).map(item => item.contentDetails?.videoId).filter(Boolean);
     if (!ids.length) throw new Error('No uploads found');
     const details = await youtube('videos', { part: 'snippet,contentDetails,status', id: ids.join(','), maxResults: '50' });
@@ -77,14 +86,27 @@ async function fetchLatestWorship(channel) {
         title: item.snippet?.title,
         thumbnail: item.snippet?.thumbnails?.maxres?.url || item.snippet?.thumbnails?.high?.url || item.snippet?.thumbnails?.medium?.url,
         publishedAt: item.snippet?.publishedAt,
+        liveBroadcastContent: item.snippet?.liveBroadcastContent,
+        embeddable: item.status?.embeddable,
+        privacyStatus: item.status?.privacyStatus,
         duration: formatDuration(seconds),
         seconds
       };
     }).filter(video => video.id && video.title);
-    const latest = videos.find(video => video.seconds >= 180) || videos[0];
-    return { ...channel, latest };
+    const eligible = videos.filter(video => {
+      if (video.seconds < 180 || video.liveBroadcastContent === 'live' || video.liveBroadcastContent === 'upcoming') return false;
+      if (video.embeddable === false || (video.privacyStatus && video.privacyStatus !== 'public')) return false;
+      if (channel.contentType !== 'daily-qt') return true;
+      const title = video.title.toLowerCase();
+      const isQt = /(생명의\s*삶|오늘의\s*(qt|큐티|말씀)|daily\s*qt|\bqt\b|큐티)/i.test(title);
+      const excluded = /(shorts?|쇼츠|라이브|live\s*stream|예고|티저)/i.test(title);
+      return isQt && !excluded;
+    });
+    const latest = eligible[0] || (channel.contentType === 'daily-qt' ? FALLBACK_DAILY_QT : videos.find(video => video.seconds >= 180) || videos[0]);
+    const alternate = channel.contentType === 'daily-qt' ? eligible.find(video => video.id !== latest?.id) || null : null;
+    return { ...channel, latest, alternate };
   } catch (error) {
-    return { ...channel, latest: null };
+    return { ...channel, latest: channel.contentType === 'daily-qt' ? FALLBACK_DAILY_QT : null, alternate: null };
   }
 }
 
@@ -92,12 +114,15 @@ export default async function handler(request, response) {
   if (request.method !== 'GET') return response.status(405).json({ message: 'Method not allowed' });
   if (!YOUTUBE_API_KEY) return response.status(503).json({ message: 'YouTube recommendations are not configured yet.' });
   try {
-    const [collections, worship] = await Promise.all([
+    const [collections, channelResults] = await Promise.all([
       Promise.all(COLLECTIONS.map(fetchPlaylist)),
       Promise.all(WORSHIP_CHANNELS.map(fetchLatestWorship))
     ]);
+    const bible = channelResults.find(channel => channel.key === 'bible');
+    const dailyWord = bible ? { ...bible, latest: bible.latest || FALLBACK_DAILY_QT } : null;
+    const worship = channelResults.map(({ alternate, ...channel }) => channel.key === 'bible' && alternate ? { ...channel, latest: alternate } : channel);
     response.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=21600');
-    return response.status(200).json({ collections, worship, videos: collections[0]?.videos || [] });
+    return response.status(200).json({ collections, worship, dailyWord, videos: collections[0]?.videos || [] });
   } catch (error) {
     return response.status(502).json({ message: 'Unable to load KONGDARY TV playlists.' });
   }
