@@ -72,18 +72,26 @@ function formatDuration(seconds) {
 
 async function fetchLatestWorship(channel) {
   try {
-    let uploadsId = channel.uploadsPlaylistId;
-    if (!uploadsId) {
-      const channelData = await youtube('channels', {
-        part: 'contentDetails',
-        ...(channel.channelId ? { id: channel.channelId } : { forHandle: channel.handle }),
-        maxResults: '1'
+    let ids = [];
+    if (channel.contentType === 'daily-qt') {
+      const search = await youtube('search', {
+        part: 'snippet', channelId: channel.channelId, type: 'video', order: 'date', maxResults: '25'
       });
-      uploadsId = channelData.items?.[0]?.contentDetails?.relatedPlaylists?.uploads;
+      ids = (search.items || []).map(item => item.id?.videoId).filter(Boolean);
+    } else {
+      let uploadsId = channel.uploadsPlaylistId;
+      if (!uploadsId) {
+        const channelData = await youtube('channels', {
+          part: 'contentDetails',
+          ...(channel.channelId ? { id: channel.channelId } : { forHandle: channel.handle }),
+          maxResults: '1'
+        });
+        uploadsId = channelData.items?.[0]?.contentDetails?.relatedPlaylists?.uploads;
+      }
+      if (!uploadsId) throw new Error('Uploads playlist not found');
+      const uploads = await youtube('playlistItems', { part: 'contentDetails', playlistId: uploadsId, maxResults: '12' });
+      ids = (uploads.items || []).map(item => item.contentDetails?.videoId).filter(Boolean);
     }
-    if (!uploadsId) throw new Error('Uploads playlist not found');
-    const uploads = await youtube('playlistItems', { part: 'contentDetails', playlistId: uploadsId, maxResults: channel.contentType === 'daily-qt' ? '30' : '12' });
-    const ids = (uploads.items || []).map(item => item.contentDetails?.videoId).filter(Boolean);
     if (!ids.length) throw new Error('No uploads found');
     const details = await youtube('videos', { part: 'snippet,contentDetails,status', id: ids.join(','), maxResults: '50' });
     const videos = (details.items || []).map(item => {
